@@ -1,0 +1,39 @@
+Logging is an indispensable pillar in every software project, offering valuable insights into system behavior, error occurrences, and intricate processes. This document presents a comprehensive overview of the design principles and methodologies that underpin the creation of a robust logging system within the EWPS application.
+
+Logging Categories:
+
+The foundational structure of EWPS logging revolves around two primary categories: exception logging (handled and unhandled) and process logs.
+
+Handled Logging:
+
+Within this category, the system adeptly manages errors through a systematic approach. These errors are anticipated and accounted for in the application's codebase. The intention is to ensure that the application sustains its anticipated behavior, effectively circumventing any disruptions to the user experience.
+
+Unhandled Logging:
+
+Handled logging encompasses the systematic tracking and management of errors that the system successfully handles during its operations. These errors are anticipated and accounted for in the application's codebase. For instance, envision a situation within the EWPS application where a user initiates a job submission with incomplete information. This action triggers a validation error due to the missing data. The system detects this validation error, processes it, and generates an error message that guides the user toward providing the necessary information. This entire process is a prime example of handled logging.
+
+Handled logging guarantees that despite the occurrence of errors, they are proficiently detected and managed by the application. This preventative approach eliminates abrupt crashes and unforeseen behaviors that could detrimentally affect users. Consequently, developers can proactively identify and resolve common errors, thereby augmenting the overall reliability and robustness of the application. By methodically documenting and categorizing these managed errors, the application garners invaluable insights into its operational health, empowering developers to continuously refine and optimize performance.
+
+Process Logging:
+
+Process logging involves capturing the intricate nuances of each operation within the system. In alignment with business requirements and inspired by the SAS system, the new iteration of EWPS adopts a logging methodology reminiscent of the SAS system. For example, within the Transfer CE data stories, the application logs details such as request parameters, file origin, intermediary storage locations, and the ultimate success status of the entire process.
+
+Storage Medium for Logging:
+
+Whether pertaining to process or handled/unhandled logging, the application systematically archives and preserves these logs in both text-based files and a database. In the case of file-based logs, they are organized based on their origin, whether it's related to UI, authentication, or API interactions.
+
+Timestamped Files:
+
+Each file captures error logs for the duration of the current day. This organizational paradigm accelerates the process of identifying errors. Given EWPS's multi-module nature, spanning diverse platforms and frameworks, error files are intelligently categorized according to the specific module or framework they relate to.
+
+Configuration:
+
+By default, the system logging level is configured to "Error," signifying that the system exclusively records error messages. However, when circumstances necessitate more comprehensive log messages, users have the flexibility to modify this setting within the application's configuration.
+
+Issue Troubleshooting and Data Tracing:
+
+The harmonization of data stemming from these two logging classifications plays an instrumental role in facilitating issue troubleshooting during error events or data tracing endeavors. The systematic organization of files according to module execution datetime further enhances the coherence and efficiency of the logging system.
+
+UI Integration:
+
+To foster a seamless user experience, an API is exposed, enabling the UI framework to directly stream log information. This obviates the necessity for users to download files or engage with the operating system to access logs. The advantages of this API integration are manifold: developers are liberated from the intricacies of navigating platforms like Linux to access log files. Instead, they can effortlessly leverage their application credentials to access log details within the application itself. This approach aligns harmoniously with the overarching principle of EWPS as a one-stop-shop application destination.
