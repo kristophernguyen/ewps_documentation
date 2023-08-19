@@ -10,9 +10,7 @@ Within this category, the system adeptly manages errors through a systematic app
 
 Unhandled Logging:
 
-Handled logging encompasses the systematic tracking and management of errors that the system successfully handles during its operations. These errors are anticipated and accounted for in the application's codebase. For instance, envision a situation within the EWPS application where a user initiates a job submission with incomplete information. This action triggers a validation error due to the missing data. The system detects this validation error, processes it, and generates an error message that guides the user toward providing the necessary information. This entire process is a prime example of handled logging.
-
-Handled logging guarantees that despite the occurrence of errors, they are proficiently detected and managed by the application. This preventative approach eliminates abrupt crashes and unforeseen behaviors that could detrimentally affect users. Consequently, developers can proactively identify and resolve common errors, thereby augmenting the overall reliability and robustness of the application. By methodically documenting and categorizing these managed errors, the application garners invaluable insights into its operational health, empowering developers to continuously refine and optimize performance.
+Handling unanticipated exceptions involves systematically tracking and managing unexpected errors. These errors are unaccounted for in the application's codebase. Handling these exceptions ensures that errors are efficiently detected and managed, avoiding disruptions and enhancing user satisfaction. Developers can identify and resolve common errors, bolstering application reliability. Documenting and categorizing these managed errors provides invaluable operational insights for optimization.
 
 Process Logging:
 
