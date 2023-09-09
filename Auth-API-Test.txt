@@ -1,0 +1,5 @@
+	1. This instruction assume that you have already create a new feature branch and ready to write some unit test for your stories.
+	2. Copy the test_application.template file and paste it into the same location as the copied file
+	3. Rename the pasted file to test_appsettings.json
+	4. Make sure to configure the connection string parameters (schema, username) to the schema that you want to test against
+For password, use encryption API endpoint to generate an encrypted password
