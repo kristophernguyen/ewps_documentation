@@ -1,0 +1,11 @@
+Server SSL
+	SSL certificate is set to expired yearly.  Following is instruction on how to switch out the expired certificate
+	Development Server:
+		1. The certificate is being stored on a central location ().  Sign into cpidev2v server and go to /cpiapps/ewps/ssl folder.
+		2. Delete server_certificate.crt and server_private.txt files.  
+		3. Make sure the two new files (certificate and private key) have the same name as the delete files.  Copy the two file into the folder containing the deleted files.
+		4. Restart the web server by executing the following scripts (.gitlab/scripts/restart.sh)
+		5. Verify certificate by opening the browser and go to …
+	Production Server:
+		TBD
+	Local:
