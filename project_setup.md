@@ -125,7 +125,28 @@ Visual studio code is used as the main IDE. Most of the steps here are very simi
 2. Open the command prompt and navigate to the root of the project
 3. Issue the command (python -m venv .venv).  Once virtual environment is created, make sure to activate the new environment before proceed to the next step.
 4. Issue the command (pip install -r requirements.txt).  This command will install all the required packages this project required.  Note that NTLM need to started before installing.
-5. Copy the `config.template` file under API/Config folde and paste it into the same location as the copied file.
-6. Rename the pasted file to `config.local.env`.
-7. Repeat step 5-6 for devl environment.  Rename the pasted file to 'config.devl.env'
-8. 
+5. Copy the `config.template` file under API/Config folde and paste it into the same location as the copied file. Rename the pasted file to `config.local.env`.
+6. Change the following key/value parameters:
+   |Key|Value|
+   |----------------|----------------|
+   |schema_name|"Your Schema DB"|
+   |db_username|"Your db username"|
+   |db_password|"Your db password"|
+   |logging_location|"any absolute or relative path"|
+   |ce_local_temp_path|"any absolute or relative path to store temporary download file"|
+   |linux_service_account|"Your linux user account"|
+   |linux_service_account_password|"Your linux password"|
+
+   Note: use authentication encryption api to encrypt any of the password above
+8. Repeat step 5-6 to create devl environment if needed.  Since environment variable is being dictated via JWT, if devl environment is selected when authenticated, a config.devl.env is needed.
+9. Run the application via "Python API | SSL" profile to verify if everything work.
+
+**Offline Resource File (Python Package)**
+Whenever a new Python package is added to any of the projects, it's necessary to regenerate the offline resource file on the server. The CI/CD pipeline relies on this offline file for building and deploying the project. Follow these instructions to update the offline resource file:
+
+1. Regenerate the requirements.txt file by issue command 'python -m pip freeze > requirements.txt'
+1. Open the command prompt and navigate to the `.gitlab/scripts` folder.
+2. Execute `compress.bat`.
+3. Open an FTP session to `cpidev1`. Upload the newly generated file, `offline.tar.gz`, to the `/cnsdevopsdev/ewps_offline_resource/linux/ui` folder. Ensure that the newly uploaded file is assigned to the `cnsdevopsdev` group (use `chgrp cnsdevopsdev`).
+
+
