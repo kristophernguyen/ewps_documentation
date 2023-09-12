@@ -1,5 +1,3 @@
-Certainly, here's your self-performance review with the suggestions incorporated into a more structured format:
-
 **Self-Performance Review**
 
 **Overall Performance**
@@ -8,7 +6,7 @@ I have consistently exceeded expectations in my role as a Software Engineer. I a
 
 **Accomplishments**
 
-1. Successfully rewrote two major applications using .NET Core, resulting in a 25% improvement in efficiency and a 30% reduction in maintenance costs.
+1. Successfully rewrote two major applications (CPI Calendar and CPI Production Monitor) using .NET Core and followed industry standards and best practices, resulting in improved efficiency and reduced maintenance costs.
 
 2. Conducted Lunch and Learn Developers Training Sessions on various topics, including Python, .NET Blazor, unit testing in .NET and Python, and GitLab Runner CI/CD, enhancing the team's skills and knowledge.
 
@@ -37,5 +35,3 @@ I have consistently exceeded expectations in my role as a Software Engineer. I a
 4. **Progress Towards Solution Architect Role**: Work closely with my manager to develop a clear roadmap for achieving my goal of becoming a Solution Architect, including identifying key milestones and skill development areas.
 
 I am confident that I can achieve my goals and continue to be a valuable asset to BLS.
-
-By presenting your self-performance review in this structured format, you can effectively communicate your achievements, areas for growth, and future goals to your manager or supervisor.
