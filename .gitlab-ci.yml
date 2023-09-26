@@ -1,0 +1,71 @@
+stages: # List of stages for jobs, and their order of execution
+  - build
+  - deploy
+build-job-and-run-unit-test: # This job runs in the build stage, which runs first.
+  stage: build
+  environment: development
+  tags:
+    - Common Runner
+  before_script:
+    - cp /cnsdevopsdev/ewps_offline_resource/linux/api/wheelhouse.tar.gz wheelhouse.tar.gz
+    - tar -zxf wheelhouse.tar.gz
+    - cp requirements.txt wheelhouse/requirements.txt
+    - $python_path_dev --version
+    - $python_path_dev -m venv .venv
+    - source .venv/bin/activate
+    - pip3 install -r wheelhouse/requirements.txt --no-index --find-links wheelhouse
+    - cp /cnsdevopsdev/ewps_settings/dev/api/config.devl.env config/config.devl.env
+    - cp /cnsdevopsdev/ewps_settings/dev/api/config.acct.env config/config.acct.env
+    - cp /cnsdevopsdev/ewps_settings/dev/api/config.po.env config/config.po.env
+    - cp /cnsdevopsdev/ewps_settings/dev/api/config.syst.env config/config.syst.env
+    - cp /cnsdevopsdev/ewps_settings/dev/api/config.test.env config/config.test.env
+    - cp /cnsdevopsdev/ewps_settings/dev/api/jwt.env config/jwt.env
+    - cp /cnsdevopsdev/ewps_settings/dev/api/test_config.env tests/config/test_config.env
+  script:
+    - echo "Compiling the code..."
+    - python3 -m py_compile ewps_api.py
+    - echo "Compile complete."
+    - echo "execute all unit tests"
+    - python3.10 -m unittest discover -s tests -p '*_test.py'
+deploy-job: # This job runs in the deploy stage.
+  stage: deploy # It only runs when *both* jobs in the test stage complete successfully.
+  #needs: ["build-job"]
+  rules:
+    - if: ($CI_COMMIT_BRANCH == "development" && $CI_PIPELINE_SOURCE == "merge_request_event")
+  tags:
+    - Common Runner
+  environment: development
+  before_script:
+    #start ssh-agent
+    - eval $(ssh-agent -s)
+    #add SSH private key stored in variable ewpsapps_rsa_private_key to agent store
+    - echo "$ewpsapps_rsa_private_key" | tr -d '\r' | ssh-add -
+    #creates .ssh directory and assign correct permissions
+    - mkdir -p ~/.ssh
+    - chmod 700 ~/.ssh
+    #check public key on remote server using ip address stored in app_server variable and add it to known hosts.  It is protecting
+    #from men-in-the-middle attack and is neccessary to works, otherwise the job will fail
+    - ssh-keyscan $app_server >> ~/.ssh/known_hosts
+    - chmod 644 ~/.ssh/known_hosts
+  script:
+    - echo "Deploying application..."
+    - cp /cnsdevopsdev/ewps_offline_resource/linux/api/wheelhouse.tar.gz wheelhouse.tar.gz
+    - tar -zxf wheelhouse.tar.gz
+    - cp requirements.txt wheelhouse/requirements.txt
+    - cp /cnsdevopsdev/ewps_settings/dev/api/config.devl.env config/config.devl.env
+    - cp /cnsdevopsdev/ewps_settings/dev/api/config.acct.env config/config.acct.env
+    - cp /cnsdevopsdev/ewps_settings/dev/api/config.po.env config/config.po.env
+    - cp /cnsdevopsdev/ewps_settings/dev/api/config.syst.env config/config.syst.env
+    - cp /cnsdevopsdev/ewps_settings/dev/api/jwt.env config/jwt.env
+    - touch ewps_api_publish.tar.gz
+    - tar -czf ewps_api_publish.tar.gz --exclude=ewps_api_publish.tar.gz .
+    #copy ewps_api_publish.tar.gz to cpidev2v
+    - ssh -o StrictHostKeyChecking=no $ssh_user '/usr/sbin/lsof -ti :'$server_port_dev '| xargs --no-run-if-empty kill -9;rm -r -f '$publish_folder_dev '; mkdir '$publish_folder_dev
+    - scp -o StrictHostKeyChecking=no ewps_api_publish.tar.gz $ssh_user:$publish_folder_dev
+    - ssh -o StrictHostKeyChecking=no $ssh_user 'whoami;cd '$publish_folder_dev'; tar -xzf ewps_api_publish.tar.gz;' $python_path_dev '-m venv .venv;source .venv/bin/activate; pip3 install -r wheelhouse/requirements.txt --no-index --find-links wheelhouse; nohup gunicorn ewps_api:app --workers 4 --worker-class uvicorn.workers.UvicornWorker --keyfile='$ssl_privatekey '--certfile='$ssl_servercert '--bind 0.0.0.0:'$server_port_dev' > /cpiapps/ewps/logs/devl/api/server_logs/server.log & echo $! > /cpiapps/ewps/logs/devl/api/server_logs/nohup.$(date +%m_%d_%Y_T%H_%M_%S).out'
+    # copy all folder except wheel and .tg to build folder
+    # compress dist folder
+    # ssh to cpidev2v and stop service
+    # rsync
+    # start service
+    - echo "Application successfully deployed."
