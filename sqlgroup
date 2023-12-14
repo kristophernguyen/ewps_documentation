@@ -1,0 +1,8 @@
+SELECT *
+FROM (
+    SELECT 
+        your_columns,
+        ROW_NUMBER() OVER (PARTITION BY your_grouping_column ORDER BY your_ordering_column) as row_num
+    FROM your_table
+) 
+WHERE row_num = 1;
