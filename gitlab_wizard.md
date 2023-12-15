@@ -344,6 +344,98 @@ When configuring CI/CD for Angular and React projects, there are specific consid
 These questions take into account the specific characteristics and tooling associated with Angular and React projects. As always, tailor the questions based on the specific needs and preferences of your users and projects.
 
 --------------------------------------------------------------------------------------------------
+
+When configuring CI/CD for Java projects, you'll need to consider aspects specific to Java development. Here are questions you might include in your CI/CD wizard for Java projects:
+
+### Java Project Information:
+
+1. **Build Tool:**
+   - *Dropdown or Radio Buttons:* Maven, Gradle.
+
+2. **Project Type:**
+   - *Dropdown or Radio Buttons:* Web Application, Spring Boot, JAR, WAR, etc.
+
+### Version Control:
+
+3. **Repository URL:**
+   - *Text Input:* Ask for the URL of the Git repository where the Java project is hosted.
+
+### Build Configuration:
+
+4. **Build Script:**
+   - *Radio Buttons:* Predefined options (e.g., Default, Custom).
+   - *Text Input (if Custom):* Allow users to enter their custom build script.
+
+5. **Build Environment:**
+   - *Dropdown:* Specify the target Java version and JDK.
+
+6. **Dependency Management:**
+   - *Dropdown:* Specify the approach for dependency management (e.g., Maven Central, JCenter).
+
+### Unit Testing:
+
+7. **Include Unit Testing:**
+   - *Checkbox or Toggle Switch:* Allow users to enable or disable unit testing.
+
+8. **Testing Framework:**
+   - *Dropdown (conditional on enabling unit testing):* Options like JUnit, TestNG.
+
+### Code Quality:
+
+9. **Include Code Quality Checks:**
+    - *Checkbox or Toggle Switch:* Allow users to enable or disable code quality checks.
+
+10. **Code Linters/Analyzers:**
+    - *Dropdown (conditional on enabling code quality):* Options like SonarQube, Checkstyle, FindBugs.
+
+### Security Scanning:
+
+11. **Include Security Scanning:**
+    - *Checkbox or Toggle Switch:* Allow users to enable or disable security scanning.
+
+12. **Security Scanning Tools:**
+    - *Dropdown (conditional on enabling security scanning):* Options like OWASP Dependency-Check.
+
+### Deployment:
+
+13. **Deployment Script:**
+    - *Radio Buttons:* Predefined options (e.g., Default, Custom).
+    - *Text Input (if Custom):* Allow users to enter their custom deployment script.
+
+14. **Deployment Environment:**
+    - *Dropdown:* Specify the target hosting platform (e.g., AWS, Azure, Heroku).
+
+15. **Environment Variables:**
+    - *Text Input:* Allow users to specify environment variables for deployment.
+
+### Notifications:
+
+16. **Notification Channels:**
+    - *Checkbox or Toggle Switch:* Allow users to choose notification channels (e.g., Email, Slack).
+
+17. **Notification Triggers:**
+    - *Checkbox or Toggle Switch:* Allow users to choose events that trigger notifications (e.g., Build success, Build failure).
+
+### Additional Considerations:
+
+18. **Rollback Strategy:**
+    - *Text Input:* Ask users to describe their rollback strategy in case of deployment failure.
+
+19. **Health Checks:**
+    - *Checkbox or Toggle Switch:* Will the deployment include health checks to ensure the application is running correctly?
+
+20. **Advanced Deployment Options:**
+    - *Checkbox or Toggle Switch:* Blue-Green Deployment, Canary Deployment, etc.
+
+21. **Database Migrations:**
+    - *Checkbox or Toggle Switch:* Does the project involve database migrations during deployment?
+
+22. **Containerization (optional):**
+    - *Checkbox or Toggle Switch:* Does the deployment involve containerization using Docker?
+
+These questions cover a wide range of considerations for configuring CI/CD for Java projects. As always, tailor the questions based on the specific needs and preferences of your users and projects.
+
+-------------------------------------------------------------------------------------------------
 Creating a wizard for groups with limited technical resources can be a great idea to simplify the process of setting up CI/CD pipelines, especially when working with platforms like GitLab. It can help users who may not be familiar with the intricacies of configuration files to adopt CI/CD practices more easily. However, there are a few considerations to keep in mind:
 
 **Pros:**
