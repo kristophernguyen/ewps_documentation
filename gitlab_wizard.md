@@ -42,6 +42,75 @@ When creating a wizard for GitLab CI/CD configuration, you'll need to gather inf
 10. **Build Cache:**
     - Do you want to use build caching to speed up subsequent builds?
     - If yes, specify cache paths or patterns.
+   
+----------------------------------------------------------------------------------------------------
+When configuring deployment in your CI/CD wizard for both Linux and Windows servers, it's essential to ask questions that cover aspects specific to each platform. Below are some key questions you might include in your deployment section:
+
+### General Deployment Questions:
+
+1. **Deployment Environment:**
+   - *Radio Buttons or Dropdown:* Linux or Windows.
+
+2. **Target Server(s):**
+   - *Text Input or Dropdown:* Allow users to specify the target server or servers.
+
+3. **Deployment Script:**
+   - *Radio Buttons:* Predefined options (e.g., Default, Custom).
+   - *Text Input (if Custom):* Allow users to enter their custom deployment script.
+
+4. **Environment Variables:**
+   - *Text Input:* Allow users to specify environment variables required during deployment.
+
+### Linux-Specific Deployment Questions:
+
+5. **SSH Connection Details:**
+   - *Text Input:* Hostname, Port, Username, SSH Key, or Password for Linux servers.
+
+6. **Linux Service Management:**
+   - *Checkbox or Toggle Switch:* Does the deployment involve starting, stopping, or restarting services on Linux?
+
+7. **File Permissions:**
+   - *Checkbox or Toggle Switch:* Will the deployment involve setting or modifying file permissions on Linux?
+
+### Windows-Specific Deployment Questions:
+
+8. **Remote PowerShell Execution:**
+   - *Text Input:* Allow users to provide details for remote PowerShell execution on Windows.
+
+9. **Windows Service Management:**
+   - *Checkbox or Toggle Switch:* Does the deployment involve starting, stopping, or restarting services on Windows?
+
+10. **IIS Configuration:**
+    - *Checkbox or Toggle Switch:* Will the deployment involve configuring or updating IIS settings on Windows?
+
+### Common Deployment Questions:
+
+11. **Rollback Strategy:**
+    - *Text Input:* Ask users to describe their rollback strategy in case of deployment failure.
+
+12. **Health Checks:**
+    - *Checkbox or Toggle Switch:* Will the deployment include health checks to ensure the application is running correctly?
+
+13. **Deployment Notification:**
+    - *Checkbox or Toggle Switch:* Do users want to receive notifications upon successful or failed deployments?
+
+### Advanced Deployment Options:
+
+14. **Blue-Green Deployment:**
+    - *Checkbox or Toggle Switch:* Does the deployment involve a blue-green strategy for minimizing downtime?
+
+15. **Canary Deployment:**
+    - *Checkbox or Toggle Switch:* Does the deployment involve a canary strategy for gradual release to a subset of users?
+
+### Additional Tips:
+
+- Provide informational tooltips or links for users who might be less familiar with deployment concepts on Linux or Windows.
+
+- Allow users to set conditional deployment steps based on the operating system to accommodate platform-specific requirements.
+
+- Consider providing default configurations for common deployment scenarios and allowing users to customize them.
+
+Remember to adapt these questions based on the specific requirements of your users and projects, and keep the language clear and user-friendly.
 
 ----------------------------------------------------------------------------------------------------
 Creating a wizard for groups with limited technical resources can be a great idea to simplify the process of setting up CI/CD pipelines, especially when working with platforms like GitLab. It can help users who may not be familiar with the intricacies of configuration files to adopt CI/CD practices more easily. However, there are a few considerations to keep in mind:
