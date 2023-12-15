@@ -249,6 +249,101 @@ When configuring CI/CD for .NET projects, there are several aspects you should c
 These questions cover a wide range of considerations for configuring CI/CD for .NET projects. You can tailor them further based on the specific needs and preferences of your users and projects.
 
 ---------------------------------------------------------------------------------------------------
+
+When configuring CI/CD for Angular and React projects, there are specific considerations and questions tailored to the nature of single-page application (SPA) frameworks. Here are questions you might include in your CI/CD wizard for Angular and React projects:
+
+### SPA Project Information:
+
+1. **Framework:**
+   - *Dropdown or Radio Buttons:* Angular, React.
+
+2. **Project Type:**
+   - *Dropdown or Radio Buttons:* Single-page Application, Component Library, etc.
+
+### Version Control:
+
+3. **Repository URL:**
+   - *Text Input:* Ask for the URL of the Git repository where the SPA project is hosted.
+
+### Build Configuration:
+
+4. **Build Script:**
+   - *Radio Buttons:* Predefined options (e.g., Default, Custom).
+   - *Text Input (if Custom):* Allow users to enter their custom build script.
+
+5. **Build Environment:**
+   - *Dropdown:* Specify the target runtime environment for the build.
+
+6. **Package Manager:**
+   - *Dropdown:* npm, yarn, etc.
+
+7. **Node.js Version:**
+   - *Dropdown:* Specify the Node.js version.
+
+### Unit Testing:
+
+8. **Include Unit Testing:**
+   - *Checkbox or Toggle Switch:* Allow users to enable or disable unit testing.
+
+9. **Testing Framework:**
+   - *Dropdown (conditional on enabling unit testing):* Options like Jest, Jasmine, Mocha.
+
+### Code Quality:
+
+10. **Include Code Quality Checks:**
+    - *Checkbox or Toggle Switch:* Allow users to enable or disable code quality checks.
+
+11. **Code Linters/Analyzers:**
+    - *Dropdown (conditional on enabling code quality):* Options like ESLint, TSLint, Stylelint.
+
+### Security Scanning:
+
+12. **Include Security Scanning:**
+    - *Checkbox or Toggle Switch:* Allow users to enable or disable security scanning.
+
+13. **Security Scanning Tools:**
+    - *Dropdown (conditional on enabling security scanning):* Options like SonarQube, Snyk.
+
+### Deployment:
+
+14. **Deployment Script:**
+    - *Radio Buttons:* Predefined options (e.g., Default, Custom).
+    - *Text Input (if Custom):* Allow users to enter their custom deployment script.
+
+15. **Deployment Environment:**
+    - *Dropdown:* Specify the target hosting platform (e.g., AWS, Azure, Netlify, Vercel).
+
+16. **Environment Variables:**
+    - *Text Input:* Allow users to specify environment variables for deployment.
+
+### Notifications:
+
+17. **Notification Channels:**
+    - *Checkbox or Toggle Switch:* Allow users to choose notification channels (e.g., Email, Slack).
+
+18. **Notification Triggers:**
+    - *Checkbox or Toggle Switch:* Allow users to choose events that trigger notifications (e.g., Build success, Build failure).
+
+### Additional Considerations:
+
+19. **Rollback Strategy:**
+    - *Text Input:* Ask users to describe their rollback strategy in case of deployment failure.
+
+20. **Health Checks:**
+    - *Checkbox or Toggle Switch:* Will the deployment include health checks to ensure the application is running correctly?
+
+21. **Advanced Deployment Options:**
+    - *Checkbox or Toggle Switch:* Blue-Green Deployment, Canary Deployment, etc.
+
+22. **Static Site Generation (SSG):**
+    - *Checkbox or Toggle Switch (for React):* Is the project using static site generation?
+
+23. **Routing Configuration (for Angular):**
+    - *Checkbox or Toggle Switch:* Will the deployment involve configuring or updating routing settings in Angular?
+
+These questions take into account the specific characteristics and tooling associated with Angular and React projects. As always, tailor the questions based on the specific needs and preferences of your users and projects.
+
+--------------------------------------------------------------------------------------------------
 Creating a wizard for groups with limited technical resources can be a great idea to simplify the process of setting up CI/CD pipelines, especially when working with platforms like GitLab. It can help users who may not be familiar with the intricacies of configuration files to adopt CI/CD practices more easily. However, there are a few considerations to keep in mind:
 
 **Pros:**
