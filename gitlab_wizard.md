@@ -148,7 +148,105 @@ You can use ASCII art or text diagrams to create a visual representation. Here's
 This is a very simplified and textual representation. In a more sophisticated tool or application, you might use graphical elements, connecting lines, and icons to create a more visually appealing flowchart or diagram.
 
 For creating actual visual representations, you might consider using tools like draw.io, Lucidchart, or even designing it using graphic software like Adobe Illustrator, Figma, or Sketch. These tools allow you to create flowcharts with more sophisticated graphics and layouts.
+--------------------------------------------------------------------------------------------------
+When configuring CI/CD for .NET projects, there are several aspects you should consider. Here's a set of questions you might include in your wizard for .NET projects:
 
+### .NET Project Information:
+
+1. **Project Type:**
+   - *Dropdown or Radio Buttons:* Console App, Web App, API, Class Library, etc.
+
+2. **Target Framework:**
+   - *Dropdown:* .NET Core, .NET 5, .NET 6, .NET Framework.
+
+3. **Runtime Environment:**
+   - *Dropdown:* Self-contained deployment or framework-dependent deployment.
+
+### Version Control:
+
+4. **Repository URL:**
+   - *Text Input:* Ask for the URL of the Git repository where the .NET project is hosted.
+
+### Build Configuration:
+
+5. **Build Script:**
+   - *Radio Buttons:* Predefined options (e.g., Default, Custom).
+   - *Text Input (if Custom):* Allow users to enter their custom build script.
+
+6. **Build Environment:**
+   - *Dropdown:* Specify the target runtime environment for the build.
+
+7. **NuGet Package Restore:**
+   - *Checkbox or Toggle Switch:* Include a step for restoring NuGet packages.
+
+### Unit Testing:
+
+8. **Include Unit Testing:**
+   - *Checkbox or Toggle Switch:* Allow users to enable or disable unit testing.
+
+9. **Testing Framework:**
+   - *Dropdown (conditional on enabling unit testing):* Options like MSTest, NUnit, xUnit.
+
+### Code Quality:
+
+10. **Include Code Quality Checks:**
+    - *Checkbox or Toggle Switch:* Allow users to enable or disable code quality checks.
+
+11. **Code Linters/Analyzers:**
+    - *Dropdown (conditional on enabling code quality):* Options like StyleCop, SonarQube.
+
+### Security Scanning:
+
+12. **Include Security Scanning:**
+    - *Checkbox or Toggle Switch:* Allow users to enable or disable security scanning.
+
+13. **Security Scanning Tools:**
+    - *Dropdown (conditional on enabling security scanning):* Options like SonarQube, Snyk.
+
+### Containerization (if applicable):
+
+14. **Docker Configuration:**
+    - *Radio Buttons:* Predefined options (e.g., Default, Custom).
+    - *Text Input (if Custom):* Allow users to enter their custom Docker configuration.
+
+### Deployment:
+
+15. **Deployment Script:**
+    - *Radio Buttons:* Predefined options (e.g., Default, Custom).
+    - *Text Input (if Custom):* Allow users to enter their custom deployment script.
+
+16. **Environment Variables:**
+    - *Text Input:* Allow users to specify environment variables for deployment.
+
+### Notifications:
+
+17. **Notification Channels:**
+    - *Checkbox or Toggle Switch:* Allow users to choose notification channels (e.g., Email, Slack).
+
+18. **Notification Triggers:**
+    - *Checkbox or Toggle Switch:* Allow users to choose events that trigger notifications (e.g., Build success, Build failure).
+
+### Additional Considerations:
+
+19. **Target Hosting Platform:**
+    - *Dropdown:* Specify whether the application will be hosted on Windows, Linux, or both.
+
+20. **IIS Configuration (for Windows):**
+    - *Checkbox or Toggle Switch:* Will the deployment involve configuring or updating IIS settings on Windows?
+
+21. **Linux Service Management (for Linux):**
+    - *Checkbox or Toggle Switch:* Does the deployment involve starting, stopping, or restarting services on Linux?
+
+22. **Rollback Strategy:**
+    - *Text Input:* Ask users to describe their rollback strategy in case of deployment failure.
+
+23. **Health Checks:**
+    - *Checkbox or Toggle Switch:* Will the deployment include health checks to ensure the application is running correctly?
+
+24. **Advanced Deployment Options:**
+    - *Checkbox or Toggle Switch:* Blue-Green Deployment, Canary Deployment, etc.
+
+These questions cover a wide range of considerations for configuring CI/CD for .NET projects. You can tailor them further based on the specific needs and preferences of your users and projects.
 
 ---------------------------------------------------------------------------------------------------
 Creating a wizard for groups with limited technical resources can be a great idea to simplify the process of setting up CI/CD pipelines, especially when working with platforms like GitLab. It can help users who may not be familiar with the intricacies of configuration files to adopt CI/CD practices more easily. However, there are a few considerations to keep in mind:
