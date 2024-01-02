@@ -1,0 +1,52 @@
+Description
+
+As a user, I want to be able to use the EWPS UI to define demographic criteria that households must satisfy, so that I can control which households are eligible as microdata for EWPS products. In effect, I want the ability to design and store conditions that CE demographic variables must meet in order to be included in the microdata. These conditions will be applied to CE household-level data when compiling microdata.
+
+
+
+
+Pre-conditions for Creating a Condition
+
+If a user is creating a condition for an existing demographic definition ID, then the demographic ID should be marked as unavailable.
+
+
+
+
+Validation
+
+The variables should be limited to those on the Diary and Interview family and FINI database tables.
+
+
+
+
+Acceptance Criteria
+
+The user should be able to log into the EWPS UI and navigate to the demographic definitions stored in the EWPS database.
+The user should be allowed to add a new demographic definition ID (new) or add new conditions to an existing demographic definition ID (update):
+The system should allow me to select a variable from the variables database table.
+I should be able to specify the value that the variable must meet.
+The interface should allow me to choose an operation (such as >=, >, <, <=, =, if numeric) to apply to the variables.
+The interface should allow me to select a reference month start and end for the criteria.
+Once defined, the criteria should be stored in the EWPS database.
+
+
+Example of Demographic Definitions and their Components
+
+Example: Urban Households Only
+
+In this example, households eligible to have their expenditures included as microdata would have to be designated as "urban" households according to CE. For both Diary and Interview CE respondents, this designation is a value for CPI_UM = '1'. In this case, the demographic definition has one criteria for each household for each CE survey source.
+
+EWPS Table: EWPS_CE_INTVW_FINI; Column: CU_CPI_UM; Operation: '='; Value: '1'.
+EWPS Table: EWPS_CE_DIARY_FINI; Column: CU_CPI_UM; Operation: '='; Value: '1'. 
+
+
+
+
+Example: Urban Households with Persons Over 64
+
+In this example, households eligible for microdata must be designated as "urban" and contain at least one individual over the age of 64. In this case, the demographic definition has two criteria for each household for each CE survey source. For households in each survey source, both conditions must be met for a household to be eligible as microdata.
+
+EWPS Table: EWPS_CE_INTVW_FINI; Column: CU_CPI_UM; Operation: '='; Value: '1'.
+EWPS Table: EWPS_CE_INTVW_FMLY; Column: CU_OVER64; Operation: '>'; Value: '0'.
+EWPS Table: EWPS_CE_DIARY_FINI; Column: CU_CPI_UM; Operation: '='; Value: '1'.
+EWPS Table: EWPS_CE_DIARY_FMLY; Column: CU_OVER64; Operation: '>'; Value: '0'.
